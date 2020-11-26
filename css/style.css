@@ -1,0 +1,75 @@
+p {
+    margin: 0;
+    padding: 0;
+  }
+
+.rounded-10{
+    border-radius: 10px;
+}
+
+.rounded-top-10{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.p-5{
+    padding: 10px;
+}
+
+.logo-team{
+    height: 40px;
+    width: auto;
+}
+
+.logo-team-80{
+    height: 80px;
+    width: auto;
+}
+
+.card-header{
+    background-color: royalblue;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+}
+
+.td-logo-name-club{
+    display: inline-flex; 
+    align-items: center; 
+    justify-items: center;
+}
+
+.td-team-name{
+    margin-left: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+   .gone-max-600{
+       display: none;
+   }
+
+   .td-team-name{
+       font-size: 12px;
+    }
+
+   .logo-team{
+       height: 40px;
+       width: auto;
+   }
+}
+
+@media only screen and (max-width: 320px) {
+    .logo-team{
+        height: 30px;
+        width: auto;
+    }
+    .td-team-name{
+        font-size: 9px;
+     }
+
+     .table-phone{
+         font-size: 12px;
+     }
+ }

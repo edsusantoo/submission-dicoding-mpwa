@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ed News</title>
+    <meta name="description" content="My first PWA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/materialize.min.css" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="stylesheet" href="../css/style.css"/>
+    <meta name="theme-color" content="#00897B" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+       <!-- Navigasi -->
+    <nav class="teal lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a href="../index.html" id="logo-container"> <i class="material-icons">arrow_back</i></a>
+        <a href="../index.html" class="sidenav-trigger" data-target="nav-mobile">
+          <i class="material-icons">arrow_back</i>
+        </a>
+        <ul class="topnav right hide-on-med-and-down"></ul>
+        <ul class="sidenav" id="nav-mobile"></ul>
+      </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+    <div class="container">
+
+        <div class="right-align" style="margin-top: 20px;">
+            <a class="btn-floating btn-large" id="btn-save">
+                <i class="large material-icons" id="icon-favorite" >favorite</i>
+            </a>
+        </div>
+        <div id="body-content-detail-team">
+    </div>
+        
+    </div>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"
+    ></script>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/idb.js"></script>
+    <script src="../js/db.js"></script>
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var id = urlParams.get("id");
+            var fromSaved = urlParams.get("saved");
+
+            const btnSave = document.getElementById('btn-save');
+            const iconFavorite = document.getElementById('icon-favorite');
+            var item = "";
+            var status = false;
+            getSavedDetailClub().then((data)=>{
+                if(data){
+                    status = data;
+                    if(fromSaved){
+                      btnSave.style.visibility = 'visible';
+                      iconFavorite.innerHTML = 'delete_forever';
+                      item = getSavedDetailClubById(id);
+                    }else{
+                      btnSave.style.visibility = 'hidden';
+                    }
+                }else{
+                    status = data;
+                    iconFavorite.innerHTML = 'favorite';
+                    item = getDetailClub();
+                }
+            })
+            
+            btnSave.onclick = function () {
+                console.log("Tombol FAB di klik.");
+                item.then(function (club) {
+                    if(status){
+                        deleteById(club.id)
+                    }else{
+                        saveForLater(club);
+                    }
+                });
+            }
+        });
+    </script>
+  </body>
+
+</html>
