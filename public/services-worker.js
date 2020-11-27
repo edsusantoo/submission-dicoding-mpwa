@@ -19,7 +19,9 @@ else
     { url: '/icons/icon512x512.png', revision: '1' },
     { url: 'https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js', revision: '1' },
     { url: 'https://fonts.gstatic.com/s/materialicons/v67/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2', revision: '1' },
-]);
+],{
+  ignoreUrlParametersMatching: [/.*/]
+});
 
 workbox.routing.registerRoute(
   new RegExp('/js/'),
